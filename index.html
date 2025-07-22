@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>UPC-A Barcode Generator</title>
+    <!-- Link to local Bootstrap CSS -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <!-- Link to JsBarcode library -->
+    <script src="./js/JsBarcode.all.min.js"></script>
+    <style>
+        /* Custom styles for the body to ensure full height and centering */
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex; /* Use flexbox for centering */
+            align-items: center; /* Center vertically */
+            justify-content: center; /* Center horizontally */
+            background-color: #f8f9fa; /* Bootstrap's light gray background */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; /* Bootstrap's default font stack */
+        }
+
+        /* Adjustments for the SVG barcode to control its width and centering */
+        svg.barcode-svg {
+            margin-top: 20px;
+            width: 40%; /* Set width to 40% of its container */
+            height: auto; /* Maintain aspect ratio */
+            display: block; /* Ensures margin auto works for centering */
+            margin-left: auto; /* Center the SVG horizontally */
+            margin-right: auto; /* Center the SVG horizontally */
+        }
+
+        /* Custom message box styling to replace alert() */
+        #messageBox {
+            position: fixed; /* Position fixed to stay in viewport */
+            top: 50%; /* Center vertically */
+            left: 50%; /* Center horizontally */
+            transform: translate(-50%, -50%); /* Adjust for true centering */
+            background-color: #dc3545; /* Bootstrap danger color for error messages */
+            color: white; /* White text for contrast */
+            padding: 15px 25px; /* Padding inside the box */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+            z-index: 1050; /* Ensure it appears above most content */
+            display: none; /* Hidden by default */
+            font-family: inherit; /* Inherit font from body */
+            text-align: center; /* Center text within the box */
+        }
+
+        #messageBox button {
+            background-color: #f8f9fa; /* Light background for the close button */
+            color: #dc3545; /* Text color matching the error theme */
+            border: none; /* No border */
+            padding: 5px 10px; /* Padding for the button */
+            border-radius: 5px; /* Rounded corners for the button */
+            cursor: pointer; /* Pointer cursor on hover */
+            margin-top: 10px; /* Space above the button */
+            font-weight: bold; /* Bold text for the button */
+        }
+    </style>
+</head>
+<body>
+    <div class="container text-center py-5">
+        <!-- Heading with Bootstrap's responsive display class -->
+        <h2 class="mb-4 display-6">Enter an 11-Digit Number to Generate a UPC-A Barcode</h2>
+
+        <!-- Input field with Bootstrap form control styling -->
+        <input
+            type="number"
+            id="numberInput"
+            placeholder="Enter first 11 digits (e.g., 01234567890)"
+            maxlength="11"
+            class="form-control mb-4 mx-auto"
+            style="max-width: 300px;" /* Custom max-width to control input size */
+        />
+        <!-- Button with Bootstrap primary styling and shadow -->
+        <button
+            onclick="generateBarcode()"
+            class="btn btn-primary shadow rounded-md"
+        >
+            Generate Barcode
+        </button>
+        <!-- SVG element where the barcode will be rendered -->
+        <svg id="barcodeDisplay" class="barcode-svg"></svg>
+    </div>
+
+    <!-- Custom message box for displaying alerts to the user -->
+    <div id="messageBox">
+        <p id="messageText"></p>
+        <button onclick="hideMessage()">OK</button>
+    </div>
+
+    <script>
+        /**
+         * Displays a custom message box with the given message.
+         * @param {string} message - The message to display.
+         */
+        function showMessage(message) {
+            document.getElementById("messageText").innerText = message;
+            document.getElementById("messageBox").style.display = "block";
+        }
+
+        /**
+         * Hides the custom message box.
+         */
+        function hideMessage() {
+            document.getElementById("messageBox").style.display = "none";
+        }
+
+        /**
+         * Generates a UPC-A barcode based on the user's input.
+         * Validates the input for length and numeric characters before generating.
+         */
+        function generateBarcode() {
+            let input = document.getElementById("numberInput").value;
+
+            // Validate input length
+            if (input.length !== 11) {
+                showMessage("Please enter **exactly 11 digits** for a UPC-A barcode. The 12th (check) digit will be automatically calculated for you.");
+                return;
+            }
+
+            // Validate input contains only digits
+            if (!/^\d+$/.test(input)) {
+                showMessage("Please enter only numbers.");
+                return;
+            }
+
+            try {
+                // Generate the barcode using JsBarcode library
+                JsBarcode("#barcodeDisplay", input, {
+                    format: "UPC", // Specify UPC-A format
+                    displayValue: true // Show the human-readable value below the barcode
+                });
+                hideMessage(); // Hide message box if barcode generation is successful
+            } catch (error) {
+                // Catch and display any errors during barcode generation
+                showMessage("Error generating barcode: " + error.message + ". Please ensure the input is valid for UPC-A.");
+            }
+        }
+    </script>
+</body>
+</html>
