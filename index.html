@@ -60,7 +60,7 @@
 <body>
     <div class="container text-center py-5">
         <!-- Heading with Bootstrap's responsive display class -->
-        <h2 class="mb-4 display-6">Enter an 11-Digit Number to Generate a UPC-A Barcode</h2>
+        <h2 class="mb-4 display-6">Enter an 11 or 4 Digit Number to Generate a UPC-A Barcode</h2>
 
         <!-- Input field with Bootstrap form control styling -->
         <input
@@ -112,7 +112,12 @@
         function generateBarcode() {
             let input = document.getElementById("numberInput").value;
 
-            // Validate input length
+	    // Adds support for Produce UPC's
+	    if (input.length == 4) {
+		input = "0000000" + input;
+	    }
+
+	    // Validate input length
             if (input.length !== 11) {
                 showMessage("Please enter **exactly 11 digits** for a UPC-A barcode. The 12th (check) digit will be automatically calculated for you.");
                 return;
