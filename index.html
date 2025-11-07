@@ -38,7 +38,7 @@
             color: white; /* White text for contrast */
             padding: 15px 25px; /* Padding inside the box */
             border-radius: 8px; /* Rounded corners */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             z-index: 1050; /* Ensure it appears above most content */
             display: none; /* Hidden by default */
             font-family: inherit; /* Inherit font from body */
@@ -55,12 +55,20 @@
             margin-top: 10px; /* Space above the button */
             font-weight: bold; /* Bold text for the button */
         }
+
+        /* Style for the digit count message */
+        #digitCountMessage {
+            font-size: 0.875em; /* Smaller font size */
+            color: #6c757d; /* Muted color */
+            margin-bottom: 10px; /* Space below the message */
+            display: block; /* Ensures it takes a new line */
+        }
     </style>
 </head>
 <body>
     <div class="container text-center py-5">
         <!-- Heading with Bootstrap's responsive display class -->
-        <h2 class="mb-4 display-6">Enter an 11 or 4 Digit Number to Generate a UPC-A Barcode</h2>
+        <h2 class="mb-4 display-6">Enter an 11 or produce pumber to generate a UPC-A Barcode</h2>
 
         <!-- Input field with Bootstrap form control styling -->
         <input
@@ -68,9 +76,14 @@
             id="numberInput"
             placeholder="Enter first 11 digits (e.g., 01234567890)"
             maxlength="11"
-            class="form-control mb-4 mx-auto"
+            class="form-control mb-1 mx-auto"
             style="max-width: 300px;" /* Custom max-width to control input size */
+            oninput="updateDigitCount()"
         />
+
+        <!-- Span to display the digit count -->
+        <span id="digitCountMessage">0 digits entered.</span>
+
         <!-- Button with Bootstrap primary styling and shadow -->
         <button
             onclick="generateBarcode()"
@@ -89,6 +102,15 @@
     </div>
 
     <script>
+        /**
+         * Updates the display of the current digit count.
+         */
+        function updateDigitCount() {
+            let input = document.getElementById("numberInput").value;
+            let count = input.length;
+            document.getElementById("digitCountMessage").innerText = `${count} digits entered.`;
+        }
+
         /**
          * Displays a custom message box with the given message.
          * @param {string} message - The message to display.
@@ -112,12 +134,17 @@
         function generateBarcode() {
             let input = document.getElementById("numberInput").value;
 
-	    // Adds support for Produce UPC's
-	    if (input.length == 4) {
-		input = "0000000" + input;
-	    }
+            // Adds support for Produce UPC's
+            if (input.length == 4) {
+                input = "0000000" + input;
+            }
 
-	    // Validate input length
+            // Adds support for Organic Produce
+            if (input.length == 5) {
+                input = "000000" + input;
+            }
+
+            // Validate input length
             if (input.length !== 11) {
                 showMessage("Please enter **exactly 11 digits** for a UPC-A barcode. The 12th (check) digit will be automatically calculated for you.");
                 return;
