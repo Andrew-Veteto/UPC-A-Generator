@@ -26,7 +26,7 @@
         <svg id="barcodeDisplay" class="barcode-svg"></svg>
 
         <div id="saveCode">
-            <button onclick="saveUPC()" class="btn btn-primary shadow rounded-md">
+            <button onclick="showSaveName()" class="btn btn-primary shadow rounded-md">
                 Save UPC
             </button>
         </div>
@@ -52,7 +52,7 @@
 
     <div id="messageBox">
         <p id="messageText"></p>
-        <button onclick="hideMessage()">OK</button>
+        <button onclick="hideMessage()" class="btn btn-primary shadow rounded-md">OK</button>
     </div>
 
     <div id="saveName">
@@ -62,6 +62,14 @@
         <button onclick="submitInfo()" class="btn btn-primary shadow rounded-md">
             Save
         </button>
+    </div>
+
+    <div id="confirmDelete">
+        <h2>Do you want to delete:</h2>
+        <p id="nameForDeletion"></p>
+        <p id="upcForDeletion"></p>
+        <button onclick="confirmDeleteItem()" class="btn btn-primary shadow rounded-md">Yes</button>
+        <button onclick="hideDeleteItem()" class="btn btn-primary shadow rounded-md">No</button>
     </div>
 
 </body>

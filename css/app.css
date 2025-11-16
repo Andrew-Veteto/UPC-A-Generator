@@ -194,6 +194,26 @@ hr {
     padding: 0;
 }
 
+.barcode-card .edit-btn {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    background-color: darkgrey;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0;
+}
+
+.barcode-card .edit-btn:hover {
+    background-color: dimgrey;
+}
+
 .barcode-card .delete-btn:hover {
     background-color: #a71d2a;
 }
@@ -202,6 +222,7 @@ hr {
 
 /* Base Overlay Styles */
 #messageBox,
+#confirmDelete,
 #saveName {
     display: none;
     /* Hidden by default in the HTML, JS will toggle */

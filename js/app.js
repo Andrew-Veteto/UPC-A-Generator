@@ -1,6 +1,7 @@
 /* app.js */
 
 let savedItems = [];
+let IcantFindABetterWayToDoThis = "";
 
 function updateDigitCount() {
 	let input = document.getElementById("numberInput").value;
@@ -38,10 +39,6 @@ function showSaveName() {
 	document.getElementById("saveName").style.display = "block";
 	// Add overlay class for the name modal
 	document.body.classList.add('overlay-active');
-	// Hide other elements as intended by the original logic
-	document.getElementById("barcodeDisplay").style.display = "none";
-	document.getElementById("saveCode").style.display = "none";
-	document.getElementById("cardsWrapper").style.display = "none";
 }
 
 function hideSaveName() {
@@ -78,11 +75,6 @@ function generateBarcode() {
 	}
 }
 
-function saveUPC() {
-	// The original logic just calls showSaveName(). The input validation should happen within generateBarcode which is assumed to be run prior.
-	showSaveName();
-}
-
 function submitInfo() {
 	let inputName = document.getElementById("nameInput").value;
 	let inputNum = document.getElementById("numberInput").value;
@@ -113,6 +105,28 @@ function searchCards() {
 	renderCards(filteredItems);
 }
 
+function deleteItem(item, upc) {
+	hideSaveUPC();
+
+	document.getElementById("confirmDelete").style.display = "block";
+	const displayItemName = document.getElementById("nameForDeletion");
+	displayItemName.textContent = item;
+	const displayItemUpc = document.getElementById("upcForDeletion");
+	displayItemUpc.textContent = upc;
+	
+	IcantFindABetterWayToDoThis = item;
+}
+
+function confirmDeleteItem() {
+	localStorage.removeItem(IcantFindABetterWayToDoThis);
+	hideDeleteItem();
+	makeCards();
+}
+
+function hideDeleteItem() {
+	document.getElementById("confirmDelete").style.display = "none";
+}
+
 function renderCards(itemsToRender) {
 	const cardsContainer = document.getElementById("cardsArea");
 
@@ -138,7 +152,7 @@ function renderCards(itemsToRender) {
 		deleteButton.textContent = "×";
 		deleteButton.classList.add("delete-btn");
 		deleteButton.onclick = function () {
-			localStorage.removeItem(item.name);
+			deleteItem(item.name, item.upc);
 			// After deletion, re-make cards which reloads the global list and re-renders
 			makeCards();
 		};
