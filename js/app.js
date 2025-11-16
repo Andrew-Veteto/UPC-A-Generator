@@ -84,6 +84,21 @@ function submitInfo() {
 		return;
 	}
 
+	for (let i = 0; i < localStorage.length; i++){
+		const key = localStorage.key(i);
+		const value = localStorage.getItem(key);
+		if (inputName == key) {
+			hideSaveName();
+			showMessage("Name is already in use. Please use another name.");
+			return;
+		}
+		if (inputNum == value) {
+			hideSaveName();
+			showMessage("UPC/PLU is already in use. Please use another UPC/PLU.");
+			return;
+		}
+	}
+
 	localStorage.setItem(inputName, inputNum);
 
 	document.getElementById("nameInput").value = "";
@@ -106,7 +121,7 @@ function searchCards() {
 }
 
 function deleteItem(item, upc) {
-	hideSaveUPC();
+	document.body.classList.add('overlay-active');
 
 	document.getElementById("confirmDelete").style.display = "block";
 	const displayItemName = document.getElementById("nameForDeletion");
@@ -125,6 +140,7 @@ function confirmDeleteItem() {
 
 function hideDeleteItem() {
 	document.getElementById("confirmDelete").style.display = "none";
+	document.body.classList.remove('overlay-active');
 }
 
 function renderCards(itemsToRender) {
