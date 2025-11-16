@@ -178,7 +178,7 @@ hr {
     color: #555;
 }
 
-.barcode-card .delete-btn {
+.barcode-card .delete-btn, #cancleSave {
     position: absolute;
     top: 5px;
     right: 5px;
@@ -194,31 +194,13 @@ hr {
     padding: 0;
 }
 
-.barcode-card .edit-btn {
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    background-color: darkgrey;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    font-size: 12px;
-    line-height: 1;
-    cursor: pointer;
-    padding: 0;
-}
-
-.barcode-card .edit-btn:hover {
-    background-color: dimgrey;
-}
-
 .barcode-card .delete-btn:hover {
     background-color: #a71d2a;
 }
 
-/* Message Box and Save Name Modal Overlays */
+#cancleSave:hover {
+    background-color: #a71d2a;
+}
 
 /* Base Overlay Styles */
 #messageBox,
