@@ -8,11 +8,22 @@ function updateDigitCount() {
 	let count = input.length;
 	document.getElementById("digitCountMessage").innerText = `${count} digits entered.`;
 	// Add a visual cue based on count if needed (e.g., change color)
+	const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
 	if (count === 11) {
 		document.getElementById("digitCountMessage").style.color = "green";
+	} else if (prefersDarkScheme.matches) {
+		document.getElementById("digitCountMessage").style.color = "white";
 	} else {
 		document.getElementById("digitCountMessage").style.color = "#6c757d";
 	}
+	// Easiest way to prevent a user to mess up the UI
+	// If a user was to generate a barcode then edit
+	// the input field the UI to let them know would
+	// render under the save screen. This is a simple
+	// fix that won't allow the user to save a UPC
+	// aslong as they don't change the input field
+	// after its been verified
+	hideSaveUPC();
 }
 
 function showMessage(message) {

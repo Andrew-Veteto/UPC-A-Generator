@@ -167,11 +167,6 @@ hr {
     position: relative;
 }
 
-.barcode-card svg {
-    max-width: 100%;
-    height: auto;
-}
-
 .barcode-card p {
     margin: 0.5rem 0 0;
     font-size: 0.875rem;
@@ -217,7 +212,7 @@ hr {
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     z-index: 1000;
-    max-width: 400px;
+    max-width: 350px;
     width: 90%;
     text-align: center;
 }
@@ -243,4 +238,39 @@ hr {
 #messageBox button,
 #saveName button {
     margin-top: 0.5rem;
+}
+
+@media (prefers-color-scheme: dark){
+    body {
+        background-color: #333;
+    }
+    h3 {
+        color: white;
+    }
+    .display-6 {
+        color: white;
+    }
+    .container {
+        background-color: #333;
+    }
+    #digitCountMessage {
+        color: white;
+    }
+    #messageBox,
+    #confirmDelete,
+    #saveName {
+        background-color: #333;
+        color: white;
+    }
+    #numberInput,
+    #searchInput {
+        background-color: #333;
+        color: white;
+    }
+    .barcode-card {
+        background-color: #333;
+    }
+    .barcode-card p {
+        color: white;
+    }
 }
