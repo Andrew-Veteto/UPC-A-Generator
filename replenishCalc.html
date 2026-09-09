@@ -2,6 +2,8 @@
 <html>
 
 <head>
+    <!-- This is here for better mobile touch detection. However this was disabled in the JS. Look there for reason -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Replenishment Calculator</title>
     <!-- Link to local CSS -->
     <link href="./css/app.css" rel="stylesheet">
@@ -28,35 +30,34 @@
         <h3 id="currentNumber">0</h3>
 
         <br>
-        
+
         <div class="numPadArea">
             <div class="numPad">
-                <button class="numPadNum" onclick="addNum(1)">1</button>
-                <button class="numPadNum" onclick="addNum(2)">2</button>
-                <button class="numPadNum" onclick="addNum(3)">3</button>
-                <button class="numPadNum" onclick="addNum(4)">4</button>
-                <button class="numPadNum" onclick="addNum(5)">5</button>
-                <button class="numPadNum" onclick="addNum(6)">6</button>
-                <button class="numPadNum" onclick="addNum(7)">7</button>
-                <button class="numPadNum" onclick="addNum(8)">8</button>
-                <button class="numPadNum" onclick="addNum(9)">9</button>
-                <button class="numPadNum" onclick="addNum(0)">0</button>
+                <button class="numPadNum">1</button>
+                <button class="numPadNum">2</button>
+                <button class="numPadNum">3</button>
+                <button class="numPadNum">4</button>
+                <button class="numPadNum">5</button>
+                <button class="numPadNum">6</button>
+                <button class="numPadNum">7</button>
+                <button class="numPadNum">8</button>
+                <button class="numPadNum">9</button>
+                <button class="numPadNum">0</button>
+            </div>
+            <div class="actionPad">
+                <button data-action="clear" class="numPadAction">
+                    #
+                </button>
+                <br>
+                <button data-action="undo" class="numPadAction">
+                    &lt;
+                </button>
+                <br>
+                <button data-action="addList" class="numPadAction">
+                    +
+                </button>
             </div>
         </div>
-
-        <br>
-
-        <button onclick="addList()" class="button">
-            Add List
-        </button>
-        <br>
-        <button onclick="undo()" class="button">
-            Undo
-        </button>
-        <br>
-        <button onclick="clearAll()" class="button">
-            Clear
-        </button>
 
     </div>
 

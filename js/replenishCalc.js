@@ -51,3 +51,27 @@ function undo(){
     
     document.getElementById("currentNumber").innerText = currentNum;
 }
+
+// Gemini code
+// Single-event binding attached dynamically after DOM loads
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll("button").forEach(button => {
+        button.addEventListener("pointerdown", (e) => {
+            e.preventDefault(); // Prevents touch zoom, selection, and duplicate click synthesis
+
+            // Read button content or action
+            const action = button.dataset.action;
+            const val = button.innerText.trim();
+
+            if (action === "addList") {
+                addList();
+            } else if (action === "clear") {
+                clearAll();
+            } else if (action === "undo") {
+                undo();
+            } else if (!isNaN(val) && val !== "") {
+                addNum(Number(val));
+            }
+        });
+    });
+});
