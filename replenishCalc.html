@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Replenishment Calculator</title>
+    <!-- Link to local CSS -->
+    <link href="./css/app.css" rel="stylesheet">
+    <link href="./css/replenishCalc.css" rel="stylesheet">
+    <!-- Link to JsBarcode library -->
+    <script src="./js/JsBarcode.all.min.js"></script>
+    <script src="./js/replenishCalc.js"></script>
+</head>
+
+<nav>
+    <a class="navigation" href="index.html">UPC-A Generator</a>
+</nav>
+
+<body>
+
+    <div class="container text-center py-5">
+
+        <h2 class="mb-4 display-6">Enter in the length of the replenishment list</h2>
+
+        <span id="digitCountMessage">0 list entered.</span>
+        <span id="totalCount">0 items counted.</span>
+        <span id="listArray"></span>
+
+        <h3 id="currentNumber">0</h3>
+
+        <br>
+        
+        <div class="numPadArea">
+            <div class="numPad">
+                <button class="numPadNum" onclick="addNum(1)">1</button>
+                <button class="numPadNum" onclick="addNum(2)">2</button>
+                <button class="numPadNum" onclick="addNum(3)">3</button>
+                <button class="numPadNum" onclick="addNum(4)">4</button>
+                <button class="numPadNum" onclick="addNum(5)">5</button>
+                <button class="numPadNum" onclick="addNum(6)">6</button>
+                <button class="numPadNum" onclick="addNum(7)">7</button>
+                <button class="numPadNum" onclick="addNum(8)">8</button>
+                <button class="numPadNum" onclick="addNum(9)">9</button>
+                <button class="numPadNum" onclick="addNum(0)">0</button>
+            </div>
+        </div>
+
+        <br>
+
+        <button onclick="addList()" class="btn btn-primary shadow rounded-md">
+            Add List
+        </button>
+        <button onclick="clearAll()" class="btn btn-primary shadow rounded-md">
+            Clear
+        </button>
+        <button onclick="undo()" class="btn btn-primary shadow rounded-md"
+            >Undo
+        </button>
+
+    </div>
+
+</body>
+
+</html>
