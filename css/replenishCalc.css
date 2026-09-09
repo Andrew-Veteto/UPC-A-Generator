@@ -26,8 +26,30 @@
     width: 150px;
     height: 150px;
     margin: 15px;
+    font-size: xx-large;
 }
 
 .numPadNum:hover{
     background-color: #0056b3;
+}
+
+.button{
+    display: inline-block;
+    font-weight: 400;
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-color: #007bff;
+    border: 1px solid #007bff;
+    padding: 0.375rem 0.75rem;
+    font-size: xx-large;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    margin-top: 1rem;
+}
+
+.button:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
 }
