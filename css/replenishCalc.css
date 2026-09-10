@@ -53,3 +53,81 @@ button, input, select {
     user-select: none;
     -webkit-user-select: none;
 }
+
+@media (min-width: 300px) {
+    .numPadNum{
+        width: 45px;
+        height: 45px;
+        margin: 5px;
+    }
+    .numPadAction{
+        width: 45px;
+        height: 45px;
+        margin: 5px;
+    }
+}
+
+@media (min-width: 314px) {
+    .numPadNum{
+        width: 45px;
+        height: 45px;
+        margin: 10px;
+    }
+    .numPadAction{
+        width: 45px;
+        height: 45px;
+        margin: 10px;
+    }
+}
+
+@media (min-width: 363px) {
+    .numPadNum{
+        width: 55px;
+        height: 55px;
+        margin: 10px;
+    }
+    .numPadAction{
+        width: 55px;
+        height: 55px;
+        margin: 10px;
+    }
+}
+
+@media (min-width: 415px) {
+    .numPadNum{
+        width: 55px;
+        height: 55px;
+        margin: 13px;
+    }
+    .numPadAction{
+        width: 55px;
+        height: 55px;
+        margin: 13px;
+    }
+}
+
+@media (min-width: 420px) {
+    .numPadNum{
+        width: 65px;
+        height: 65px;
+        margin: 15px;
+    }
+    .numPadAction{
+        width: 65px;
+        height: 65px;
+        margin: 15px;
+    }
+}
+
+@media (min-width: 505px) {
+    .numPadNum{
+        width: 75px;
+        height: 75px;
+        margin: 15px;
+    }
+    .numPadAction{
+        width: 75px;
+        height: 75px;
+        margin: 15px;
+    }
+}
